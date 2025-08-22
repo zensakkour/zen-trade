@@ -1,0 +1,16 @@
+DEFAULTS = {
+    "exchange": "binanceusdm",
+    "symbol": "BTC/USDT",
+    "timeframe": "5m",
+    "start": "2024-08-22",
+    "end":   "2025-08-22",
+    "initial_equity": 14000.0,
+    "risk_pct": 0.003,
+    "sl_pct": 0.006,
+    "tp_pct": 0.010,
+    "leverage": 5,
+    "margin_buffer": 0.90,
+    "taker_fee": 0.0005,
+    "slippage_bps": 1.0,
+    "entry_on": "next_open",
+}
