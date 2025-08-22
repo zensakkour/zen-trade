@@ -5,3 +5,4 @@ matplotlib
 python-dateutil
 requests
 python-dotenv
+dotenv
