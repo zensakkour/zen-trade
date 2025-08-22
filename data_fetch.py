@@ -10,9 +10,16 @@ def _parse_date(d):
         return d.astimezone(timezone.utc)
     return datetime.strptime(d, "%Y-%m-%d").replace(tzinfo=timezone.utc)
 
-def backfill_ohlcv(symbol="BTC/USDT", timeframe="5m", start="2024-08-22", end="2025-08-22", cache=True, verbose=True):
+def backfill_ohlcv(
+    exchange_name="binanceusdm", symbol="BTC/USDT", timeframe="5m",
+    start="2024-08-22", end="2025-08-22", cache=True, verbose=True
+):
     os.makedirs(DATA_DIR, exist_ok=True)
-    ex = ccxt.binanceusdm({"enableRateLimit": True})
+
+    ex_class = getattr(ccxt, exchange_name)
+    ex = ex_class({"enableRateLimit": True})
+    if exchange_name == "bybit":
+        ex.options["defaultType"] = "swap"
     ex.load_markets()
 
     sdt = _parse_date(start)
@@ -34,7 +41,7 @@ def backfill_ohlcv(symbol="BTC/USDT", timeframe="5m", start="2024-08-22", end="2
     out = []
 
     while True:
-        batch = ex.fetch_ohlcv(symbol, timeframe=timeframe, since=since_ms, limit=limit)
+        batch = ex.fetch_ohlcv(sym, timeframe=timeframe, since=since_ms, limit=limit)
         if not batch:
             break
         out += batch

@@ -1,4 +1,5 @@
 DEFAULTS = {
+    "exchange": "binanceusdm",
     "symbol": "BTC/USDT",
     "timeframe": "5m",
     "start": "2024-08-22",
