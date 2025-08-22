@@ -1,7 +1,7 @@
 import pandas as pd
 from .base import BaseStrategy
 
-class SimpleMAStrategy(BaseStrategy):
+class SimpleMaStrategy(BaseStrategy):
     def __init__(self, params: dict):
         super().__init__(params)
         self.fast = self.params.get("fast", 20)
